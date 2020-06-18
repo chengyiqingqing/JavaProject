@@ -2,6 +2,9 @@ package annotation01.test01;
 
 import org.junit.Test;
 
+/**
+ * Junit注解，简单实用
+ */
 public class Testable {
 
     public static void execute() {
