@@ -151,54 +151,13 @@ A problem occurred evaluating project ':app'.
 > Could not find method AmsConfig() for arguments [build_5n6idkxwtmzfflm5k30ynjblo$_run_closure1@2cf1f355] on project ':app' of type org.gradle.api.Project
 ```
 
-## 日志
+## 手码代码的思路梳理
 
-`./gradlew build` 的日志
+#### 自定义注解
+（1）定义注解类：通过@interface定义注解类
+（2）定义注解类型：通过@Target(ElementType.)定义注解类型，常用可选择的类型为type，method，field
+（3）定义注解运行范围：通过@Retention(RetentionPolicy.) 定义
 
-```shell
-> Task :app:transformClassesWithAmsTransformForRelease
-AmsTransform filterClassName:com.tzx.amsdemo.App.class
-AmsTransform filterClassName:com.tzx.amsdemo.BuildConfig.class
-AmsTransform amsMethodFile:maintest#com.tzx.amsdemo.MainActivity.class
-AmsTransform Find jar input: android.local.jars:AmsTestJar_V1.0.jar:2069720caf021a802230197880600b9eb8ea02c8
-AmsTransform Modifyjar: com/tzx/ams_test_jar/AmsTestJar.class
-AmsMethodVisitor visitAnnotation Lcom/tzx/ams/TrackMethod;
-AmsMethodVisitor TEST  methodName=test
-AmsTransform Modifyjar: com/tzx/ams_test_jar/BuildConfig.class
-AmsTransform Find jar input: androidx.appcompat:appcompat:1.1.0
-AmsTransform Find jar input: androidx.constraintlayout:constraintlayout:1.1.3
-AmsTransform Find jar input: androidx.fragment:fragment:1.1.0
-AmsTransform Find jar input: androidx.appcompat:appcompat-resources:1.1.0
-AmsTransform Find jar input: androidx.drawerlayout:drawerlayout:1.0.0
-AmsTransform Find jar input: androidx.viewpager:viewpager:1.0.0
-AmsTransform Find jar input: androidx.loader:loader:1.0.0
-AmsTransform Find jar input: androidx.activity:activity:1.0.0
-AmsTransform Find jar input: androidx.vectordrawable:vectordrawable-animated:1.1.0
-AmsTransform Find jar input: androidx.vectordrawable:vectordrawable:1.1.0
-AmsTransform Find jar input: androidx.customview:customview:1.0.0
-AmsTransform Find jar input: androidx.core:core:1.1.0
-AmsTransform Find jar input: androidx.cursoradapter:cursoradapter:1.0.0
-AmsTransform Find jar input: androidx.versionedparcelable:versionedparcelable:1.1.0
-AmsTransform Find jar input: androidx.collection:collection:1.1.0
-AmsTransform Find jar input: androidx.lifecycle:lifecycle-runtime:2.1.0
-AmsTransform Find jar input: androidx.lifecycle:lifecycle-viewmodel:2.1.0
-AmsTransform Find jar input: androidx.savedstate:savedstate:1.0.0
-AmsTransform Find jar input: androidx.interpolator:interpolator:1.0.0
-AmsTransform Find jar input: androidx.lifecycle:lifecycle-livedata:2.0.0
-AmsTransform Find jar input: androidx.lifecycle:lifecycle-livedata-core:2.0.0
-AmsTransform Find jar input: androidx.arch.core:core-runtime:2.0.0
-AmsTransform Find jar input: androidx.arch.core:core-common:2.1.0
-AmsTransform Find jar input: androidx.lifecycle:lifecycle-common:2.1.0
-AmsTransform Find jar input: androidx.annotation:annotation:1.1.0
-AmsTransform Find jar input: androidx.constraintlayout:constraintlayout-solver:1.1.3
-AmsTransform Find jar input: :ams
-AmsTransform Modifyjar: com/tzx/ams/BuildConfig.class
-AmsTransform Modifyjar: com/tzx/ams/MethodEventManager.class
-AmsTransform Modifyjar: com/tzx/ams/MethodObserver.class
-AmsTransform Modifyjar: com/tzx/ams/TrackMethod.class
-AmsTransform Find dir input:classes
-AmsTransform Modifydir: com.tzx.amsdemo.MainActivity.class
-AmsClassVisitor visitMethod: com/tzx/amsdemo/MainActivity TEST methodName= maintest
-AmsTransform Modifydir: com.tzx.amsdemo.TimeObserver.class
-```
+#### 自定义注解处理器
+
 
