@@ -1,22 +1,48 @@
+# 编程思想之注解
 
+笔者喜欢从三个角度来写技术文章。`what`，`why`，`how`。
 
-# AndroidPluginStudy
-
-[ASM](https://asm.ow2.io/) 是一个通用的`Java`字节码操作和分析框架。它可以直接以二进制形式用于修改现有类或动态生成类。
+讲我理解的注解前，首先简单看下`java`自己提供的`Junit`注解单元测试框架。`@Test`就是实现了Annotation的`注解`，用于单元测试
 
 ```java
-    public boolean canFinishLaunchActivity() {
-        if (DEBUG) LogUtils.d(TAG, "canFinishLaunchActivity() called ]");
-        return mCanFinishLaunchActivity;
+public class Testable {
+
+    public static void execute() {
+        System.out.println("Executing...");
     }
+
+    @Test
+    public void testExecute2() {
+        System.out.println("testExecute2...");
+        execute();
+    }
+
+    @Test
+    public void testExecute1() {
+        System.out.println("testExecute1...");
+        execute();
+    }
+
+}
 ```
 
 
-## 自定义plugin开发
+## 我理解的注解
 
-`Gradle`从1.5开始，`Gradle`插件包含了一个叫`Transform`的API。官方文档：http://google.github.io/android-gradle-dsl/javadoc/
+文章中的所有代码可参考仓库代码。
 
-### 创建插件
+### 一.注解的概念
+
+> 注解是什么
+
+注解又称为标注，是jdk5.0引入的一种注释机制。
+
+> 为什么会产生注解的语法
+
+Java语言中的类，方法，变量，参数和包等都可以被标注。和 Javadoc 不同，Java 标注可以通过反射获取标注内容。在编译器生成类文件时，标注可以被嵌入到字节码中。
+Java 虚拟机可以保留标注内容，在运行时可以获取到标注内容 。 当然它也支持自定义 Java 标注。
+
+### 一.自定义注解
 
 在 `AndroidStudio` 中创建一个纯净的`Module` 文件。
 
