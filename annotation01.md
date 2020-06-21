@@ -46,7 +46,7 @@ public class Testable {
 Annotation就像Java修饰符一样，可以用于修饰包、类、构造器、方法、变量、参数、局部变量，这些信息存储在Annotation的"name=value“中。
 Annotation对程序的运行无影响，如果希望Annotation在运行时其到作用，就需要通过配套工具对annotation中的信息进行访问处理，这一工具统称为APT注解处理工具。
 
-### 1.自定义`标记注解`
+### 1.标记注解`
 
 
 
@@ -170,3 +170,61 @@ public class UseCaseTracker {
 2. 获取该Class对象的所有的可访问的方法`List<Method>`。如`clazz.getDeclaredMethods()`
 3. 获取`Method`对象的注解标识。如`method.getAnnotation(UseCase.class)`
 4. 若该标识不为null。对其进行处理。
+
+
+
+## 核心概念参考
+
+1. 什么是注解【概念】？注解的优势【存在价值】？
+
+   如上。
+
+2. 自定义注解的步骤？
+
+   如上。
+
+3. 注解Annotation与Class，Method，Field的继承关系？
+
+   ```
+   Class，Method，Field继承了AnnotatedElement注解接口。持有了如下方法
+   
+   <T extends Annotation> T getAnnotation(Class<T> annotationClass);
+   ```
+
+4. @Target注解的标记类型有哪几种？
+
+   10种。常用的有ElementType.TYPE，ElementType.FIELD，ElementType.METHOD
+
+5. @Retention注解的生效时间有哪几种？
+
+   ```java
+   
+       /**
+        * RetentionPolicy.SOURCE
+        * RetentionPolicy.RUNTIME
+        * RetentionPolicy.RUNTIME
+        */
+   public enum RetentionPolicy {
+       /**
+        * Annotations are to be discarded by the compiler.
+        * 编译时，被编译器丢弃。
+        */
+       SOURCE,
+   
+       /**
+        * Annotations are to be recorded in the class file by the compiler
+        * but need not be retained by the VM at run time.  This is the default
+        * behavior.
+        * 被编译器记录到class文件内，运行时不会保留它
+        */
+       CLASS,
+   
+       /**
+        * Annotations are to be recorded in the class file by the compiler and
+        * retained by the VM at run time, so they may be read reflectively.
+        * 运行时被保留
+        * @see java.lang.reflect.AnnotatedElement
+        */
+       RUNTIME
+   }
+   ```
